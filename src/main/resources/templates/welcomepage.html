@@ -5,7 +5,18 @@
     <title>Welcome Page</title>
 </head>
 <body>
-    <h3>Welcome <span th:text="${firstName}">[Empty]</span> <span th:text="${lastName}">[Empty]</span></h3>
+    <h3>Welcome <span th:text="${username}">[Empty]</span></h3>
+    <p>You favorite color so far is <span th:text="${color}">[Empty]</span></p>
+    <p>Select your favorite color</p>
+    <form method="POST" action="/welcomepage/colorChange">
+        <select name="color">
+            <option value="volvo">Red</option>
+            <option value="saab">Green</option>
+            <option value="fiat">Blue</option>
+            <option value="audi">Black</option>
+        </select>
+        <input type="submit" value="Submit">
+    </form>
     <a href="/page2" th:href="@{/page2}">Got To Page 2</a></br>
     <a href="/" th:href="@{/}">Go To Home Page</a>
 </body>

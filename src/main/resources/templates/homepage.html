@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Home Page</title>
 </head>
 <body>
     <h3>Welcome to Session Tests</h3>
-    <p>Insert your data here : </p>
-    <form method="POST" action="/fakelogin">
-        <p>First Name</p>
-        <input type="text" name="firstName"/></br>
-        <p>Last Name</p>
-        <input type="text" name="lastName"/></br></br>
+    <p>Please Log in</p>
+    <form method="POST" action="/authenticateUsers" th:action="@{/authenticateUsers}">
+        <p>Username</p>
+        <input type="text" name="username"/></br>
+        <p>Password</p>
+        <input type="password" name="password"/></br></br>
         <input type="submit" value="Submit">
     </form>
 </body>
