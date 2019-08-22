@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome Page</title>
+</head>
+<body>
+    <h3>Welcome <span th:text="${firstName}">[Empty]</span> <span th:text="${lastName}">[Empty]</span></h3>
+    <a href="/page2" th:href="@{/page2}">Got To Page 2</a></br>
+    <a href="/" th:href="@{/}">Go To Home Page</a>
+</body>

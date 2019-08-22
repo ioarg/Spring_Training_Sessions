@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Page 2</title>
+</head>
+<body>
+<h3> This is page 2 </h3>
+    <p> Your data is : <span th:text="${firstName}">[Empty]</span> <span th:text="${lastName}">[Empty]</span></p>
+    <a href="/welcomepage" th:href="@{/welcomepage}">Go To Welcome Page</a></br>
+    <a href="/" th:href="@{/}">Go To Home Page</a>
+</body>
+</html>
