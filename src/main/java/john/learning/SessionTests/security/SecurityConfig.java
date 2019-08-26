@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 
 import javax.sql.DataSource;
 import java.beans.PropertyVetoException;
@@ -53,15 +54,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.jdbcAuthentication().dataSource(securityDatasource());
     }
 
+    //Use ".sessionFixation().newSession()" otherwise old session attributes remain after reloggin in without logout
     @Override
     public void configure(HttpSecurity http) throws Exception{
         http.authorizeRequests()
                 .anyRequest().authenticated()
                 .and()
+                .sessionManagement()
+                    .sessionFixation()
+                    .newSession()
+                .and()
                 .formLogin()
-                    .loginPage("/home")
+                    .loginPage("/login")
                     .loginProcessingUrl("/authenticateUsers")
-                    .defaultSuccessUrl("/welcomepage")
                     .failureUrl("/unauthorized")
                     .permitAll()
                 .and()

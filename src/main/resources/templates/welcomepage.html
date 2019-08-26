@@ -8,15 +8,20 @@
     <h3>Welcome <span th:text="${username}">[Empty]</span></h3>
     <p>You favorite color so far is <span th:text="${color}">[Empty]</span></p>
     <p>Select your favorite color</p>
-    <form method="POST" action="/welcomepage/colorChange">
+    <form method="POST" th:action="@{/welcome/colorChange}">
         <select name="color">
-            <option value="volvo">Red</option>
-            <option value="saab">Green</option>
-            <option value="fiat">Blue</option>
-            <option value="audi">Black</option>
+            <option value="red">Red</option>
+            <option value="green">Green</option>
+            <option value="blue">Blue</option>
+            <option value="black">Black</option>
         </select>
         <input type="submit" value="Submit">
     </form>
+    </br></br>
+    <form method="POST" th:action="@{/logout}">
+        <input type="submit" value="Logout">
+    </form>
+    </br></br>
     <a href="/page2" th:href="@{/page2}">Got To Page 2</a></br>
     <a href="/" th:href="@{/}">Go To Home Page</a>
 </body>

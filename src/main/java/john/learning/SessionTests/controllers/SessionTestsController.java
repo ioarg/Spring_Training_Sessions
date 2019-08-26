@@ -1,5 +1,7 @@
 package john.learning.SessionTests.controllers;
 
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,21 +17,31 @@ public class SessionTestsController {
     private void updateModel(Model model, HttpSession session){
         String username = (String) session.getAttribute("username");
         String color = (String) session.getAttribute("color");
-        model.addAttribute("firstName", username);
-        model.addAttribute("lastName", color);
+        model.addAttribute("username", username);
+        model.addAttribute("color", color);
+        System.out.println("Session : {username=" + username+", color="+color+"}");
+        System.out.println("Model : " + model);
     }
 
-    @GetMapping("/welcomepage")
+    @GetMapping("/welcome")
     public String getWelcomePage(HttpSession session, Model model){
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username;
+        if (principal instanceof UserDetails) {
+            username = ((UserDetails)principal).getUsername();
+        } else {
+            username = principal.toString();
+        }
+        session.setAttribute("username", username);
         updateModel(model, session);
         return "welcomepage";
     }
 
-    @PostMapping("/welcomepage/colorChange")
+    @PostMapping("/welcome/colorChange")
     public String colorChange(@RequestParam String color, HttpServletRequest request, Model model){
         HttpSession session = request.getSession();
         session.setAttribute("color", color);
-        return "redirect:/welcomepage";
+        return "redirect:/welcome";
     }
 
     @GetMapping("/page2")

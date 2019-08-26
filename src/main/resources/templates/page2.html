@@ -6,8 +6,12 @@
 </head>
 <body>
 <h3> This is page 2 </h3>
-    <p> Your data is : <span th:text="${username}">[Empty]</span> <span th:text="${color}">[Empty]</span></p>
-    <a href="/welcomepage" th:href="@{/welcomepage}">Go To Welcome Page</a></br>
+    <p> Your data is : </p>
+    <ul>
+        <li><span th:text="${username}">[Empty]</span></li>
+        <li><span th:text="${color}">[Empty]</span></li>
+    </ul>
+    <a href="/welcomepage" th:href="@{/welcome}">Go To Welcome Page</a></br>
     <a href="/" th:href="@{/}">Go To Home Page</a>
 </body>
 </html>
